@@ -3,28 +3,50 @@
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Automated Scheduling System</title>
-
 </head>
 <body>
-    <header>
-        <h1>Department Head Login</h1>
-    </header>
     <section>
-       
+        <h1>Department Head Login</h1>
         <?php
+        // Database connection
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $database = "scheduling";
+
+        // Create a new connection
+        $conn = new mysqli($servername, $username, $password, $database);
+
+        // Check the connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
         // Check if form is submitted
         if (isset($_POST['submit'])) {
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            // Perform validation and authentication
-            if ($username == 'head' && $password == 'password') {
-                // Redirect to faculty dashboard or perform necessary actions
+            // Prepare the SQL statement
+            $stmt = $conn->prepare("SELECT * FROM head WHERE username = ? AND password = ?");
+            $stmt->bind_param("ss", $username, $password);
+
+            // Execute the query
+            $stmt->execute();
+
+            // Fetch the result
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                // Redirect to head_dashboard.php
                 header('Location: head_dashboard.php');
                 exit();
             } else {
                 echo '<p class="error">Invalid username or password.</p>';
             }
+
+            // Close the statement
+            $stmt->close();
         }
         ?>
         <form method="POST" action="">
@@ -42,5 +64,10 @@
     <footer>
         <p>&copy; <?php echo date("Y"); ?> Your Department. All rights reserved.</p>
     </footer>
+    
+    <?php
+    // Close the database connection
+    $conn->close();
+    ?>
 </body>
 </html>

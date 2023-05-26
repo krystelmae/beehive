@@ -7,23 +7,26 @@ body h1, ul{
 
 /* Page cotainer */
 body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     background-color: #f5f5f5;
 }
 header{
     background-color: #992c2d;
     color: #fff;
     padding: 20px;
+    padding-bottom: 0; 
 }
-h1{
+header h1{
     text-align: left;
     font-size: 1.5rem;
     font-weight:bold ;
+    margin-top: 1rem;
 }
 /* Navigation */
 nav {
     text-align: right;
     padding: 10px;
+    padding-top: 0;
 }
 nav ul{
     list-style: none;
@@ -42,6 +45,8 @@ nav ul li a{
 }
 nav ul li a:hover{
     background-color: #b36364;
+    border-radius: 50px;
+    
     
 }
 /*image design */
@@ -55,20 +60,57 @@ img{
 section{
     padding: 5px;
     background-color: #ffff;
-    margin: 20px;
     line-height: 90px;
 }
-section h1{
-    font-size: 20px;
-    text-align: right;
-    margin-bottom: 10px;
+/*.holder{
+    display: flex;
+    flex-direction: row;
 }
-p{
-    text-align: right;
-    /*text-align-last: center;*/
-    line-height: 1.5;
-    text-decoration: dotted;
+.goal h1{
+    text-align: left;
+    padding: 10px;
+    font-weight: bolder;
+    color: #992c2d;
 }
+.goal p{
+    text-align: left;
+}
+.objective h1{
+    text-align: left;
+    padding: 10px;
+    font-weight: bolder;
+    color: #992c2d;
+}
+.objective p{
+    text-align: left;
+}*/
+.holder {
+    display: flex;
+    align-items: right;
+}
+
+.holder div {
+    flex: 1;
+}
+
+.holder img {
+    max-width: 100%;
+}
+
+.goal, .Objective {
+    padding: 20px;
+}
+.text > h1{
+    line-height: normal;
+} 
+.text > p{
+    line-height: 2rem;
+}
+ul li{
+    line-height: 2rem;
+}
+    
+
 /* footer */
 footer{
     background-color: #a84c4d;
